@@ -1,0 +1,7 @@
+.btn-outline-primary:hover {
+    background-color: #007bff;  /* თქვენი წითელი ფერი */
+    color: rgb(0, 0, 0);
+  }
+  .btn-outline-primary{
+    color: white;
+  }
