@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { getPopularMovies } from "./api"; // Adjust path if necessary
+import { getPopularMovies } from "../../api"; // Adjust path if necessary
 import "bootstrap/dist/css/bootstrap.min.css"; // Import Bootstrap CSS
+import "./carousel.css"; // Import CSS file
 
 function Carousel() {
   const [movies, setMovies] = useState([]);
@@ -14,7 +15,6 @@ function Carousel() {
     fetchMovies();
   }, []);
 
-  // Auto-slide every 3 seconds
   useEffect(() => {
     if (movies.length === 0) return;
 
@@ -25,15 +25,10 @@ function Carousel() {
     return () => clearInterval(interval);
   }, [movies]);
 
-  const handleNextPage = () => {
-    window.location.href = "/nextpage"; // Navigate to the next page
-  };
-
   return (
     <div id="carouselExampleCaptions" className="carousel slide">
-      {/* Title */}
       <div className="carousel-title text-center mb-4">
-        <h2>რჩეული ფილმები</h2> {/* Title text */}
+        <h2>რჩეული ფილმები</h2>
       </div>
 
       <div className="carousel-indicators">
@@ -46,7 +41,7 @@ function Carousel() {
             className={index === activeIndex ? "active" : ""}
             aria-current={index === activeIndex ? "true" : "false"}
             aria-label={`Slide ${index + 1}`}
-            onClick={() => setActiveIndex(index)} // Manual control
+            onClick={() => setActiveIndex(index)}
           ></button>
         ))}
       </div>
@@ -58,10 +53,7 @@ function Carousel() {
               src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
               className="d-block w-100"
               alt={movie.title}
-              style={{
-                height: "40vh", // Set height to 40% of viewport height
-                objectFit: "cover", // Ensure the image covers the container area
-              }}
+              style={{ height: "40vh", objectFit: "cover" }}
             />
             <div className="carousel-caption d-none d-md-block">
               <h5>{movie.title}</h5>
@@ -87,15 +79,9 @@ function Carousel() {
         <span className="carousel-control-next-icon" aria-hidden="true"></span>
         <span className="visually-hidden">Next</span>
       </button>
-
-      {/* Navigation Button Below the Carousel */}
-      <div className="text-center mt-4">
-        <button className="btn btn-primary" href="NextPage.jsx" onClick={handleNextPage}>
-          შემდეგი გვერდი
-        </button>
-      </div>
     </div>
   );
 }
 
 export default Carousel;
+
